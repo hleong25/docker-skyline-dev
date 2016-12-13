@@ -117,15 +117,11 @@ DOCKER_CONTAINER_ID=$(docker ps -q)
 
 if [ -z "$DOCKER_CONTAINER_ID" ]; then
 
-    #echo Updating $DOCKER_IMAGE...
-
-    #$TTY_WRAPPER \
-    #docker pull $DOCKER_IMAGE
-
     echo Starting a new container...
 
     $TTY_WRAPPER \
     docker run --rm -it \
+        -m 8G \
         -e LOCAL_USER_ID=`id -u $USER` \
         -e DISPLAY=$DISPLAY \
         -v $XSOCK:$XSOCK \

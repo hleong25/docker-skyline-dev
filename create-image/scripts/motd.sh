@@ -11,7 +11,9 @@ cat<<EOF
              |___/
 
 Skyline development environment (ubuntu:xenial)
-Created on 2016-11-22
+Created on 2016-12-13
+
+Read more about the eCDM software onboarding: https://dpadsw.lss.emc.com/display/eCDM/Software+Onboarding
 
 Installed dev apps/tools
 + jdk-8u91
@@ -30,6 +32,8 @@ Useful scripts in ($INSTALL_HOME/bin)
 + start-mongodb.sh
 
 PATH=$PATH
+
+New eclipse workspace must run 'mvn mdev:configure-eclipse-workspace'
 
 Note: put custom scripts into ~/bin
 
