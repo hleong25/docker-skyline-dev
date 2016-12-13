@@ -149,6 +149,13 @@ RUN mkdir -p $INSTALL_HOME/apps/vscode \
 
 
 ##########################################
+##  JNAerator env
+##########################################
+# TODO: move this to the java section if rebuilding the whole docker image
+ENV JNAERATOR_INCLUDE_PATH=/usr/include:/usr/include/x86_64-linux-gnu:/usr/lib/gcc/x86_64-linux-gnu/5/include
+
+
+##########################################
 ##  profile.d scripts for login
 ##########################################
 COPY scripts/motd.sh /etc/profile.d
