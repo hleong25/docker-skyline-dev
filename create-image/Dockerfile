@@ -151,6 +151,15 @@ RUN mkdir -p $INSTALL_HOME/apps/vscode \
 
 
 ##########################################
+##  win10 dependencies
+##########################################
+
+RUN apt-get update && apt-get -y --no-install-recommends install \
+    libgl1-mesa-glx \
+    haveged
+
+
+##########################################
 ##  profile.d scripts for login
 ##########################################
 COPY scripts/motd.sh /etc/profile.d
