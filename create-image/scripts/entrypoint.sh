@@ -10,6 +10,8 @@ echo "Starting with UID : $USER_ID"
 useradd --shell /bin/bash -u $USER_ID -o -c "" user
 export HOME=/home/user
 
-#chown -R user:user $HOME
+if [ ! -z "$CHOWN_HOME" ]; then
+    chown -R user:user $HOME
+fi
 
 exec /usr/local/bin/gosu user "$@"

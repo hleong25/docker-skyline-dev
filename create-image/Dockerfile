@@ -82,6 +82,8 @@ RUN mvn mdev:install-eclipse -Dtodir=$INSTALL_HOME/apps/eclipse
 RUN mkdir $INSTALL_HOME/bin \
     && ln -s $INSTALL_HOME/apps/eclipse/*/eclipse/eclipse $INSTALL_HOME/bin/eclipse
 
+ENV JNAERATOR_INCLUDE_PATH=/usr/include:/usr/include/x86_64-linux-gnu:/usr/lib/gcc/x86_64-linux-gnu/5/include
+
 ##########################################
 ##  git
 ##########################################
@@ -146,13 +148,6 @@ RUN mkdir -p $INSTALL_HOME/apps/vscode \
     && export vscodeurl="http://vm-griffin-104.asl.lab.emc.com/docker/apps/$vscodefile" \
     && curl -SL $vscodeurl | tar xvz --directory $INSTALL_HOME/apps/vscode \
     && ln -s $INSTALL_HOME/apps/vscode/*/bin/code $INSTALL_HOME/bin/code
-
-
-##########################################
-##  JNAerator env
-##########################################
-# TODO: move this to the java section if rebuilding the whole docker image
-ENV JNAERATOR_INCLUDE_PATH=/usr/include:/usr/include/x86_64-linux-gnu:/usr/lib/gcc/x86_64-linux-gnu/5/include
 
 
 ##########################################
