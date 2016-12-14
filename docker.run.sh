@@ -52,7 +52,13 @@ elif [ "$PLATFORM" = "Darwin" ]; then
         fi
     done
 
-elif [ "$PLATFORM" = "Cygwin" ]; then
+elif [ "$PLATFORM" = "CYGWIN_NT-6.1" ]; then
+    # For Windows 7 (depreciated, use windows 10)
+
+    echo "Docker with Windows 7 isn't that good. Go to Windows 10 for native docker support."
+    echo "If you really want to use this under Win7, just edit this script and comment out the next line."
+    exit 1
+
     # Reference http://manomarks.github.io/2015/12/03/docker-gui-windows.html
 
     # This script will setup enable windows to run X11 gui apps by defining DISPLAY
