@@ -52,6 +52,63 @@ elif [ "$PLATFORM" = "Darwin" ]; then
         fi
     done
 
+elif [ "$PLATFORM" = "CYGWIN_NT-10.0" ]; then
+    # For Windows 10
+
+    # Reference http://manomarks.github.io/2015/12/03/docker-gui-windows.html
+
+    # This script will setup enable windows to run X11 gui apps by defining DISPLAY
+    # and exposing /tmp/.X11-unix.
+    #
+    # The user must start xserver (ie. cygwin/x, xming, etc.). For cygwin/x, you
+    # must start it with "startxwin -- -listen tcp" or else it cannot connect to
+    # the display.
+    #
+    # If eclipse seems to be sluggish, you may need to increase the CPU and MEMORY
+    # of the virtualbox vm.
+
+    # NOTE: You must add vm-griffin-104 as an insecure registry.
+    #       1. go to docker setings in the windows notifications area
+    #       2. go to docker daemon
+    #       3. add "vm-griffin-104.asl.lab.emc.com:5000" in "insecure-registry" section
+    #       4. apply the settings and wait for docker to restart
+
+    # Cygwin requirements:
+    #   xinit (for xserver)
+    #   xhost
+    #   curl
+    #   tar
+
+    CYGWIN_USERDATA=`pwd`/userdata
+    if [ ! -d ${CYGWIN_USERDATA} ]; then
+        echo Creating $CYGWIN_USERDATA
+        mkdir ${CYGWIN_USERDATA}
+    fi
+
+    LOCAL_USERDATA=$(cygpath -ms $CYGWIN_USERDATA)
+
+    LOCAL_IP=`curl -s http://vm-griffin-104.asl.lab.emc.com/docker/whatismyip.php`
+
+    WINPTY_BIN=./winpty-0.4.0-cygwin-2.5.2-x64/bin/winpty.exe
+
+    if [ ! -f "$WINPTY_BIN" ]; then
+        WINPTY_URL=http://vm-griffin-104.asl.lab.emc.com/docker/winpty-0.4.0-cygwin-2.5.2-x64.tar.gz
+        echo Cannot find winpty, attempting to get it from $WINPTY_URL
+        curl -SL $WINPTY_URL | tar xzv
+
+        if [ ! -f "$WINPTY_BIN" ]; then
+            echo Failed to get winpty
+            exit 1
+        fi
+    fi
+
+    TTY_WRAPPER=$WINPTY_BIN
+
+    export DISPLAY=$LOCAL_IP:0.0
+    xhost + $LOCAL_IP
+
+    echo "Must start xserver with: startxwin -- -listen tcp &"
+
 elif [ "$PLATFORM" = "CYGWIN_NT-6.1" ]; then
     # For Windows 7 (depreciated, use windows 10)
 
