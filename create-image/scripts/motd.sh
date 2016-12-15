@@ -11,7 +11,7 @@ cat<<EOF
              |___/
 
 Skyline development environment (ubuntu:xenial)
-Created on 2016-12-13
+Created on 2016-12-15
 
 Read more about the eCDM software onboarding: https://dpadsw.lss.emc.com/display/eCDM/Software+Onboarding
 
@@ -24,7 +24,7 @@ Installed dev apps/tools
   + bower
   + gulp
 + mongodb 3.2.1
-+ visual studio code 1.7.2-1479766213
++ visual studio code 1.8.0-1481651903
 + golang 1.7.3
 
 Useful scripts in ($INSTALL_HOME/bin)
