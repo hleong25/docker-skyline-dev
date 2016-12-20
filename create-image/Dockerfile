@@ -160,6 +160,16 @@ RUN mkdir -p $INSTALL_HOME/apps/vscode \
 
 
 ##########################################
+##  msitools
+##########################################
+
+RUN apt-get update && apt-get -y --no-install-recommends install \
+    msitools \
+    osslsigncode \
+    wixl
+
+
+##########################################
 ##  profile.d scripts for login
 ##########################################
 COPY scripts/motd.sh /etc/profile.d
