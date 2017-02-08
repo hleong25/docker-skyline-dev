@@ -24,7 +24,7 @@ Installed dev apps/tools
   + bower
   + gulp
 + mongodb 3.2.1
-+ visual studio code 1.8.1-1482158209
++ visual studio code 1.9.0-1486023356
 + golang 1.7.3
 
 Useful scripts in ($INSTALL_HOME/bin)
