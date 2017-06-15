@@ -145,29 +145,29 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
 
 
 ##########################################
-##  vscode
-##########################################
-
-RUN mkdir -p $INSTALL_HOME/apps/vscode \
-    && export vscodefile="code-stable-code_1.10.2-1488981323_amd64.tar.gz" \
-    && export vscodeurl="http://vm-griffin-104.asl.lab.emc.com/docker/apps/$vscodefile" \
-    && curl -SL $vscodeurl | tar xvz --directory $INSTALL_HOME/apps/vscode \
-    && ln -s $INSTALL_HOME/apps/vscode/*/bin/code $INSTALL_HOME/bin/code
-
-
-##########################################
 ##  golang
 ##########################################
 
 ENV GOROOT=$INSTALL_HOME/apps/golang/go
 
 RUN mkdir -p $INSTALL_HOME/apps/golang \
-    && export gofile="go1.7.5.linux-amd64.tar.gz" \
+    && export gofile="go1.8.1.linux-amd64.tar.gz" \
     && export gourl="http://vm-griffin-104.asl.lab.emc.com/docker/apps/$gofile" \
     && curl -SL $gourl | tar xvz --directory $INSTALL_HOME/apps/golang \
     && ln -s $GOROOT/bin/go $INSTALL_HOME/bin/go \
     && ln -s $GOROOT/bin/godoc $INSTALL_HOME/bin/godoc \
     && ln -s $GOROOT/bin/gofmt $INSTALL_HOME/bin/gofmt
+
+
+##########################################
+##  vscode
+##########################################
+
+RUN mkdir -p $INSTALL_HOME/apps/vscode \
+    && export vscodefile="code-stable-code_1.13.1-1497464373_amd64.tar.gz" \
+    && export vscodeurl="http://vm-griffin-104.asl.lab.emc.com/docker/apps/$vscodefile" \
+    && curl -SL $vscodeurl | tar xvz --directory $INSTALL_HOME/apps/vscode \
+    && ln -s $INSTALL_HOME/apps/vscode/*/bin/code $INSTALL_HOME/bin/code
 
 
 ##########################################
