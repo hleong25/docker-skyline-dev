@@ -18,7 +18,7 @@ Read more about the eCDM software onboarding: https://dpadsw.lss.emc.com/display
 Installed dev apps/tools
 + jdk-8u91
 + maven-toolchain-3.3
-+ eclipse
++ eclipse neon 3
 + git
 + node.js v6.9.1
   + bower

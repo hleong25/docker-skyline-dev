@@ -26,5 +26,6 @@ git config --global http.sslCAInfo "/opt/emc/git-certs/EMC_CA.pem"
 git config --global user.name "$lastname, $firstname"
 git config --global user.email "$email"
 git config --global core.autocrlf input
+git config --global fetch.prune true
 
 
