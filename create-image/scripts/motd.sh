@@ -11,13 +11,13 @@ cat<<EOF
              |___/
 
 Skyline development environment (ubuntu:xenial)
-Created on 2017-06-15
+Created on 2017-06-21
 
 Read more about the eCDM software onboarding: https://dpadsw.lss.emc.com/display/eCDM/Software+Onboarding
 
 Installed dev apps/tools
 + jdk-8u91
-+ maven-toolchain-3.3
++ maven-toolchain-3.5
 + eclipse neon 3
 + git
 + node.js v6.9.1

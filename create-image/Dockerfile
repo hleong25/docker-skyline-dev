@@ -69,11 +69,11 @@ RUN mkdir -p $INSTALL_HOME/apps/java \
 ENV JAVA_HOME=$INSTALL_HOME/apps/java/jdk1.8.0_91
 ENV PATH=$INSTALL_HOME/bin:$JAVA_HOME/bin:$PATH
 
-ENV MVN_HOME=$INSTALL_HOME/apps/maven-toolchain-3.3
+ENV MVN_HOME=$INSTALL_HOME/apps/maven-toolchain-3.5.0
 RUN mkdir $MVN_HOME \
-    && export mvnurl="https://ap-ir.lss.emc.com/artifactory/public/com/emc/brs/maven/maven-toolchain/3.3/maven-toolchain-3.3.tar.gz" \
+    && export mvnurl="https://ap-ir.lss.emc.com/artifactory/public/com/emc/brs/maven/maven-toolchain/3.5.0/maven-toolchain-3.5.0.tar.gz" \
     && curl --insecure -SL $mvnurl | tar xvz --directory $MVN_HOME \
-    && sed -i -e 's/ap-sc/ap-ir/g' $MVN_HOME/tools/maven/apache-maven-3.3.9/conf/settings.xml
+    && sed -i -e 's/ap-sc/ap-ir/g' $MVN_HOME/tools/maven/apache-maven-3.5.0/conf/settings.xml
 
 ENV PATH=$MVN_HOME/tools/bin:$PATH
 
@@ -92,9 +92,6 @@ ENV JNAERATOR_INCLUDE_PATH=/usr/include:/usr/include/x86_64-linux-gnu:/usr/lib/g
 RUN mkdir $INSTALL_HOME/git-certs \
     && curl http://ap.lss.emc.com/bootstrap/pki/certs/EMC_Root_CA.pem > $INSTALL_HOME/git-certs/EMC_CA.pem \
     && curl http://ap.lss.emc.com/bootstrap/pki/certs/EMC_SSL_CA_b60fcefc.pem >> $INSTALL_HOME/git-certs/EMC_CA.pem
-
-COPY scripts/setup-git.sh $INSTALL_HOME/bin
-COPY scripts/git-prompt.sh /etc/profile.d
 
 ##########################################
 ##  node.js v6.9.1
@@ -121,8 +118,6 @@ RUN mkdir -p $INSTALL_HOME/apps/mongodb \
     && curl -SL $mongourl | tar xvz --directory $INSTALL_HOME/apps/mongodb
 
 ENV PATH=$INSTALL_HOME/apps/mongodb/mongodb-linux-x86_64-ubuntu1604-3.2.11/bin:$PATH
-
-COPY scripts/start-mongodb.sh $INSTALL_HOME/bin
 
 
 ##########################################
@@ -171,8 +166,11 @@ RUN mkdir -p $INSTALL_HOME/apps/vscode \
 
 
 ##########################################
-##  profile.d scripts for login
+##  copy scripts at end
 ##########################################
+COPY scripts/setup-git.sh $INSTALL_HOME/bin
+COPY scripts/git-prompt.sh /etc/profile.d
+COPY scripts/start-mongodb.sh $INSTALL_HOME/bin
 COPY scripts/motd.sh /etc/profile.d
 COPY scripts/startup-user.sh /etc/profile.d
 
