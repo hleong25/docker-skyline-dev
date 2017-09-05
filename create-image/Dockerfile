@@ -61,12 +61,12 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
 ##########################################
 
 RUN mkdir -p $INSTALL_HOME/apps/java \
-    && export jdkfile="jdk-8u91-linux-x64.tar.gz" \
+    && export jdkfile="jdk-8u144-linux-x64.tar.gz" \
     && export jdkurl="http://vm-griffin-104.asl.lab.emc.com/docker/apps/$jdkfile" \
     && curl -SL $jdkurl | tar xvz --directory $INSTALL_HOME/apps/java
 
 
-ENV JAVA_HOME=$INSTALL_HOME/apps/java/jdk1.8.0_91
+ENV JAVA_HOME=$INSTALL_HOME/apps/java/jdk1.8.0_144
 ENV PATH=$INSTALL_HOME/bin:$JAVA_HOME/bin:$PATH
 
 ENV MVN_HOME=$INSTALL_HOME/apps/maven-toolchain-3.5.0
@@ -159,7 +159,7 @@ RUN mkdir -p $INSTALL_HOME/apps/golang \
 ##########################################
 
 RUN mkdir -p $INSTALL_HOME/apps/vscode \
-    && export vscodefile="code-stable-code_1.15.0-1502309460_amd64.tar.gz" \
+    && export vscodefile="code-stable-code_1.15.1-1502903936_amd64.tar.gz" \
     && export vscodeurl="http://vm-griffin-104.asl.lab.emc.com/docker/apps/$vscodefile" \
     && curl -SL $vscodeurl | tar xvz --directory $INSTALL_HOME/apps/vscode \
     && ln -s $INSTALL_HOME/apps/vscode/*/bin/code $INSTALL_HOME/bin/code
