@@ -138,6 +138,9 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
     osslsigncode \
     wixl
 
+RUN apt-get update && apt-get -y --no-install-recommends install \
+    file
+
 
 ##########################################
 ##  golang
@@ -146,7 +149,7 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
 ENV GOROOT=$INSTALL_HOME/apps/golang/go
 
 RUN mkdir -p $INSTALL_HOME/apps/golang \
-    && export gofile="go1.8.1.linux-amd64.tar.gz" \
+    && export gofile="go1.9.linux-amd64.tar.gz" \
     && export gourl="http://vm-griffin-104.asl.lab.emc.com/docker/apps/$gofile" \
     && curl -SL $gourl | tar xvz --directory $INSTALL_HOME/apps/golang \
     && ln -s $GOROOT/bin/go $INSTALL_HOME/bin/go \
@@ -159,7 +162,7 @@ RUN mkdir -p $INSTALL_HOME/apps/golang \
 ##########################################
 
 RUN mkdir -p $INSTALL_HOME/apps/vscode \
-    && export vscodefile="code-stable-code_1.15.1-1502903936_amd64.tar.gz" \
+    && export vscodefile="code-stable-code_1.17.0-1507160143_amd64.tar.gz" \
     && export vscodeurl="http://vm-griffin-104.asl.lab.emc.com/docker/apps/$vscodefile" \
     && curl -SL $vscodeurl | tar xvz --directory $INSTALL_HOME/apps/vscode \
     && ln -s $INSTALL_HOME/apps/vscode/*/bin/code $INSTALL_HOME/bin/code
